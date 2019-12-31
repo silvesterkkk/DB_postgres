@@ -16,7 +16,7 @@ postgres=# \du --check user list
 -- Alter roles
 postgres=# ALTER ROLE %username% CREATEDB;
 postgres=# \du --check user list
-# Quit psql terminal to be able to login using the new user.
+-- Quit psql terminal to be able to login using the new user.
 postgres=# \q
 
 -- Change password
