@@ -2,6 +2,7 @@
 
 -- DROP EXTENSION postgis;
 
+-- Following lines of SQL can be pasted into pgAdmin version 4 and run.
 CREATE EXTENSION postgis
     SCHEMA public
     VERSION "3.0.0";
