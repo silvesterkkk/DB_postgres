@@ -4,12 +4,31 @@
 
 shp2pgsql -I -s <SRID> <PATH/TO/SHAPEFILE> <SCHEMA>.<DBTABLE> | psql -d <DATABASE>
 
-The command parameters are:
-<SRID>Spatial reference identifier
-<PATH/TO/SHAPEFILE>Full path to the shapefile (such as C:\MyData\roads\roads.shp)
-<SCHEMA>Target schema where the new table will be created
-<DBTABLE>New database table to be created (usually the same name as the source shapefile)
-<DATABASE>Target database where the table will be created
+## The command parameters are:
+> -s SRID: Specifies the shp data projection identifier. When used in the following form: -s SRID1:SRID2 makes the shp2pgsql apply a coordinate system transformation, so projection of the data changes is required.
 
+> <PATH/TO/SHAPEFILE>Full path to the shapefile (such as C:\MyData\roads\roads.shp)
 
+> <SCHEMA>Target schema where the new table will be created
+
+> <DBTABLE>New database table to be created (usually the same name as the source shapefile)
+
+> <DATABASE>Target database where the table will be created
+
+> -p: Turns on the 'prepare' mode - only a table definition is output.
+
+> -d: Drops and recreates a table.
+
+> -a: Appends data to the existing table, provided its schema is exactly the same as the schema of the incoming data.
+
+> -g: Allows specifying of the geometry column name; the default is geom (or geog if you decide to use geography with the -G param).
+
+> -m <filename>: Specifies a file name that contains column mapping for the DBF file. This way, you can remap dbf column names to your preference.
+
+> -n: Only imports DBF and no spatial data.
+
+## an example;
 shp2pgsql -I -s 4326 ~/Desktop/phil_gis/Phil_LGU.shp public.test_load | psql -p 5432 -d shape_load_test
+
+## if required to transform between spatial reference use the following option;
+-s SRID1:SRID2
