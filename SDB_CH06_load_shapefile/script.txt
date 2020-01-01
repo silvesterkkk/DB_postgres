@@ -1,0 +1,15 @@
+
+## script to load shapefile
+## following should run from terminal window
+
+shp2pgsql -I -s <SRID> <PATH/TO/SHAPEFILE> <SCHEMA>.<DBTABLE> | psql -d <DATABASE>
+
+The command parameters are:
+<SRID>Spatial reference identifier
+<PATH/TO/SHAPEFILE>Full path to the shapefile (such as C:\MyData\roads\roads.shp)
+<SCHEMA>Target schema where the new table will be created
+<DBTABLE>New database table to be created (usually the same name as the source shapefile)
+<DATABASE>Target database where the table will be created
+
+
+shp2pgsql -I -s 4326 ~/Desktop/phil_gis/Phil_LGU.shp public.test_load | psql -p 5432 -d shape_load_test
